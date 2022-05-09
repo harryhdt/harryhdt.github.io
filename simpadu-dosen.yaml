@@ -1,0 +1,1876 @@
+openapi: 3.0.0
+info:
+  title: Simpadu Dosen
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+paths:
+  /api/simpadu-dosen/login:
+    post:
+      summary: default
+      tags:
+        - Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: 19750811 200012 1 002
+                password: password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 10:50:35 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully login
+                user:
+                  id: 1
+                  email: agus_sbn@poliban.ac.id
+                  email_verified_at: '2022-05-07T08:54:34.000000Z'
+                  profile_id: 1
+                  created_at: '2022-05-07T08:54:34.000000Z'
+                  updated_at: '2022-05-07T08:54:34.000000Z'
+                token: 2|k04N5H0iVCGswDQ8Y2INucKoBpXLr1vSvHBr1JkQ
+        '403':
+          description: Forbidden
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 10:50:21 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Bad Credentials
+  /api/simpadu-dosen/logout:
+    post:
+      summary: default
+      tags:
+        - Logout (Auth)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                token: ini_token_oke
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 10:51:08 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully logout
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 10:48:55 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+  /api/simpadu-dosen/overview:
+    get:
+      summary: default
+      tags:
+        - Dashboard (Auth)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:24:34 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully get Overview
+                data:
+                  - nama_kelas: SIKC 2A
+                    nama_mata_kuliah: Dasar Internet of Things
+                    semester: 2
+                    pertemuan_terakhir: 4
+                    total_hadir: 19
+                    total_sakit: 0
+                    total_izin: 0
+                    total_alpha: 0
+                  - nama_kelas: SIKC 4A
+                    nama_mata_kuliah: Kartografi dan Informasi Geospasial
+                    semester: 4
+                    pertemuan_terakhir: 3
+                    total_hadir: 20
+                    total_sakit: 0
+                    total_izin: 0
+                    total_alpha: 0
+                  - nama_kelas: TI 4C
+                    nama_mata_kuliah: Pemrograman Web
+                    semester: 4
+                    pertemuan_terakhir: 4
+                    total_hadir: 19
+                    total_sakit: 0
+                    total_izin: 0
+                    total_alpha: 0
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:25:01 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+  /api/simpadu-dosen/profile:
+    get:
+      summary: default
+      tags:
+        - Profile (Auth)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:34:31 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully read profile
+                data:
+                  id: 1
+                  photo: ''
+                  nama_lengkap: AGUS SETIYO BUDI N, ST, M.KOM
+                  nama_lengkap_tanpa_titel: AGUS SETIYO BUDI
+                  nip: 19750811 200012 1 002
+                  nidn: '0011087508'
+                  nik: '6371041108750007'
+                  tempat_lahir: Banjarmasin, Kalimantan Selatan
+                  tanggal_lahir: '1975-08-11'
+                  jenis_kelamin: Laki-laki
+                  golongan_darah: O
+                  agama: ISLAM
+                  status: Dosen tetap
+                  hp: '081250543099'
+                  alamat: Jalan Banjarmasin
+                  updated_at: '2022-05-09T10:36:49.000000Z'
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:35:00 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+    patch:
+      summary: default
+      tags:
+        - Profile (Auth)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                nama_lengkap: AGUS SETIYO BUDI N, ST, M.KOM
+                nama_lengkap_tanpa_titel: AGUS SETIYO BUDI
+                nip: 19750811 200012 1 002
+                nidn: '0011087508'
+                nik: '6371041108750007'
+                tempat_lahir: Banjarmasin, Kalimantan Selatan
+                tanggal_lahir: '1975-08-11'
+                jenis_kelamin: Laki-Laki
+                golongan_darah: O
+                agama: ISLAM
+                status: Dosen Tetap
+                hp: '081250543099'
+                alamat: Jalan Banjarmasin
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:36:11 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully updated profile
+                data:
+                  id: 1
+                  photo: ''
+                  nama_lengkap: AGUS SETIYO BUDI N, ST, M.KOM
+                  nama_lengkap_tanpa_titel: AGUS SETIYO BUDI
+                  nip: 19750811 200012 1 002
+                  nidn: '0011087508'
+                  nik: '6371041108750007'
+                  tempat_lahir: Banjarmasin, Kalimantan Selatan
+                  tanggal_lahir: '1975-08-11'
+                  jenis_kelamin: Laki-Laki
+                  golongan_darah: O
+                  agama: ISLAM
+                  status: Dosen Tetap
+                  hp: '081250543099'
+                  alamat: Jalan Banjarmasin
+                  updated_at: '2022-05-09T12:36:11.000000Z'
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:36:31 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+  /api/simpadu-dosen/student-presence:
+    get:
+      summary: default
+      tags:
+        - Student Presence (Auth)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:51:53 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully get presensi mahasiswa
+                data:
+                  - id: 1
+                    nim: C030319071
+                    nama: Harry Hidayat
+                    pertemuans:
+                      - id: 1
+                        status: H
+                      - id: 2
+                        status: S
+                      - id: 3
+                        status: H
+                  - id: 1
+                    nim: C030319081
+                    nama: Saguh Wiyono
+                    pertemuans:
+                      - id: 1
+                        status: A
+                      - id: 2
+                        status: S
+                      - id: 3
+                        status: I
+                  - id: 1
+                    nim: C030319092
+                    nama: Sunan Maulana Mahduni
+                    pertemuans:
+                      - id: 1
+                        status: I
+                      - id: 2
+                        status: S
+                      - id: 3
+                        status: H
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:52:09 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+    patch:
+      summary: default
+      tags:
+        - Student Presence (Auth)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                pertemuan_id: 2
+                status_baru: I
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:48:49 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully updated presensi
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:49:06 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+  /api/simpadu-dosen/meet-presence:
+    get:
+      summary: default
+      tags:
+        - Meet Presence (Auth)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:56:56 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully get presensi pertemuan
+                data:
+                  - id: 1
+                    nama_kelas: TI 4C
+                    pertemuan: 1
+                    mata_kuliah: Pemrograman Web
+                    pokok: Pengantar Pemrograman Web
+                    sub_pokok: Review materi
+                  - id: 1
+                    nama_kelas: TI 4C
+                    pertemuan: 2
+                    mata_kuliah: Pemrograman Web
+                    pokok: Project 01
+                    sub_pokok: ERD dan Mockup
+                  - id: 1
+                    nama_kelas: TI 4C
+                    pertemuan: 3
+                    mata_kuliah: Pemrograman Web
+                    pokok: Praktikum 1
+                    sub_pokok: Demo
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 12:49:45 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '56'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+    post:
+      summary: default
+      tags:
+        - Meet Presence (Auth)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id_mkxk: 1
+                pokok: Contoh Pokok
+                sub_pokok: Contoh Sub Pokok
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:06:32 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully created pertemuan presensi
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:06:18 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+    patch:
+      summary: default
+      tags:
+        - Meet Presence (Auth)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id_mkxk: 1
+                pokok: Contoh pokok baru
+                sub_pokok: Contoh sub pokok baru
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:09:45 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully updated pertemuan presensi
+                data:
+                  id: 1
+                  nama_kelas: TI 4C
+                  pertemuan: 1
+                  mata_kuliah: Pemrograman Web
+                  pokok: Contoh pokok baru
+                  sub_pokok: Contoh sub pokok baru
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:06:54 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+  /api/simpadu-dosen/student-score:
+    get:
+      summary: default
+      tags:
+        - Student Score (Auth)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:15:25 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully get nilai mahasiswa
+                data:
+                  - id: 1
+                    nim: C030319071
+                    nama: Harry Hidayat
+                    nilai_angka: 4
+                    nilai_huruf: A
+                    terakhir_berubah: '2022-04-11 11:12:13'
+                  - id: 2
+                    nim: C030319091
+                    nama: Saguh Wiyono
+                    nilai_angka: 2
+                    nilai_huruf: D
+                    terakhir_berubah: '2022-04-11 06:12:13'
+                  - id: 1
+                    nim: C030319092
+                    nama: Sunan Maulana Mahduni
+                    nilai_angka: 3.4
+                    nilai_huruf: B
+                    terakhir_berubah: '2022-04-11 11:12:13'
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:10:42 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+    patch:
+      summary: default
+      tags:
+        - Student Score (Auth)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id_mkxk: 1
+                id_nilai: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:18:30 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully updated nilai mahasiswa
+                data:
+                  id: 1
+                  nim: C030319071
+                  nama: Harry Hidayat
+                  nilai_angka: 3.9
+                  nilai_huruf: A
+                  terakhir_berubah: '2022-04-11 11:12:13'
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:15:55 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+  /api/simpadu-dosen/student-guidance:
+    get:
+      summary: default
+      tags:
+        - Student Guidance (Auth)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:25:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully get bimbingan perwalian
+                data:
+                  - id: 1
+                    nim: C030319071
+                    nama: Harry Hidayat
+                    semester: 4
+                    konsul: Halo pak
+                    tanggapan: Mantap
+                  - id: 2
+                    nim: C030319091
+                    nama: Saguh Wiyono
+                    semester: 4
+                    konsul: Halo Pak gimana
+                    tanggapan: Oke
+                  - id: 3
+                    nim: C030319092
+                    nama: Sunan Maulan Mahduni
+                    semester: 4
+                    konsul: Halo Bapak
+                    tanggapan: Siap
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:22:36 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+    patch:
+      summary: default
+      tags:
+        - Student Guidance (Auth)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                tanggapan: Mantap
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:27:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully updated bimbingan perwalian
+                data:
+                  id: 1
+                  nim: C030319071
+                  nama: Harry Hidayat
+                  semester: 4
+                  konsul: Halo pak
+                  tanggapan: Mantap
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:27:26 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
+  /api/simpadu-dosen/history-student-guidance:
+    get:
+      summary: default
+      tags:
+        - History Student Guidance (Auth)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:33:47 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Successfully get riwayat perwalian
+                data:
+                  - id: 1
+                    nim: C03039071
+                    nama: Harry Hidayat
+                    semesters:
+                      - konsul: Konsul Pertama
+                        tanggapan: Hebat
+                      - konsul: Konsul kedua
+                        tanggapan: oke
+                      - konsul: Konsul Ketiga
+                        tanggapan: Bagus
+                  - id: 2
+                    nim: C03039091
+                    nama: Saguh Wiyono
+                    semesters:
+                      - konsul: Konsul Siji
+                        tanggapan: Oo
+                      - konsul: Konsul loro
+                        tanggapan: Sakit
+                      - konsul: Konsul telu r
+                        tanggapan: Hmmmm
+                  - id: 3
+                    nim: C03039092
+                    nama: Sunan Maulana Mahduni
+                    semesters:
+                      - konsul: Konsul Sabigi
+                        tanggapan: Siip Sudah
+                      - konsul: Konsul dua wal ae
+                        tanggapan: Hiih ntap
+                      - konsul: Konsul tiga dah
+                        tanggapan: 'Y'
+        '401':
+          description: Unauthorized
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 09 May 2022 13:29:34 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: number
+                example: PHP/8.1.4
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized
